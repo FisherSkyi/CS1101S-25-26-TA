@@ -22,10 +22,13 @@
 // eval_boolean(my_exp);
 
 // Using JavaScript arrays instead of Source lists
-const my_exp = ["!", 
+const my_exp = 
+            ["!", 
                 ["&&",
                  ["||", true, false],
-                 ["&&", true, false]]];
+                 ["&&", true, false]
+                ]
+            ];
 
 // !((T||F)&&(T&&F)) => T
 
@@ -33,7 +36,7 @@ function eval_boolean(exp) {
     return typeof exp === "boolean"
            ? exp
            : exp[0] === "&&" 
-           ? eval_boolean(exp[1]) && eval_boolean(exp[2])
+           ? eval_boolean(exp[1]) && eval_boolean(exp[2]) // note here mimic lazy evaluation
            : exp[0] === "||" 
            ? eval_boolean(exp[1]) || eval_boolean(exp[2])
            : exp[0] === "!" 
