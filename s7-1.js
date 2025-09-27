@@ -1,5 +1,5 @@
 const is_even = x => x % 2 === 0;
-const square = x => {display(x); return x * x;};
+const square = x => {console.log(x); return x * x;};
 
 function fast_expt(b, n) {
     return n === 0
@@ -25,8 +25,9 @@ function cps_helper(b, n, c) {
    return n === 0
           ?   c(1) 
           :  is_even(n)
+          // move the deferred operation into the argument 
           ?   cps_helper(b, n / 2, a => c(square(a)))
-          :   cps_helper(b, n - 1, a => c(a * b));                
+          :   cps_helper(b, n - 1, a => c(a * b));            
 }
 
 function fast_expt_cps(x, y) {
@@ -39,15 +40,18 @@ function fast_expt_cps(x, y) {
  *  2
  *  4
  *  16
- *  4096
  */
 
-fast_expt(2, 12);
+// fast_expt(2, 12);
 /**
  *  2
  *  8
  *  64
- *  4096
  */
 
-// fast_expt_cps(2, 12);
+fast_expt_cps(2, 12);
+/**
+ *  2
+ *  8
+ *  64
+ */
